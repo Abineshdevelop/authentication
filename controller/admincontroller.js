@@ -3,7 +3,6 @@ const usermodel = require('../model/usermodel')
 const bcrypt = require("bcryptjs")
 const { search } = require('../routes/user')
 //const createUser = require('../models/userSchema');
-///////
 // const isMatch = await bcrypt.compare(password, admin.password);
 
 console.log("admin model", adminModel)
@@ -21,7 +20,7 @@ const loginin = async (req, res) => {
 
         req.session.admin = {
             isLoggedIn: true,
-            name: admin.name // ✅ Store real name here
+            name: admin.name //storing name here
         };
 
         res.redirect('/admin/dashboard');
@@ -54,8 +53,7 @@ const loadDashboard = async (req, res) => {
 };
 
 
-///////////////////////////
-// Load Edit Form
+//load form
 const loadEditUser = async (req, res) => {
     try {
         const user = await usermodel.findById(req.params.id);
@@ -74,7 +72,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-// Delete User
+//delete user
 const deleteUser = async (req, res) => {
     try {
         await usermodel.findByIdAndDelete(req.params.id);
@@ -102,14 +100,14 @@ const createUser = async(req,res)=>{
     res.redirect('/admin/dashboard?message=user+created+successfully')
 }
 
-///////////////
+
 
 const searchUser = async (req, res) => {
 
   try {
     console.log("search user")
     const searchQuery = req.query.q;
-    const regex = new RegExp(searchQuery, 'i'); // case-insensitive regex
+    const regex = new RegExp(searchQuery, 'i'); //to search user
 
     const users = await usermodel.find({
       $or: [

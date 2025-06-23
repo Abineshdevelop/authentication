@@ -2,7 +2,7 @@ const express=require('express')
 const app=express()
 require('dotenv').config();
 const PORT = process.env.PORT || 5000;
-const userRoutes=require('./routes/user') //importing the file
+const userRoutes=require('./routes/user')
 const adminRoutes=require('./routes/admin')
 const connectDB = require('./db/connectDB');
 const session = require('express-session');
@@ -25,10 +25,9 @@ app.use(session({
     httpOnly: true
   }
 }));
-//static assets
+
 app.use(express.static('public'))
 
-//data receive from body convert it in to json object
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 

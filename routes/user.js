@@ -20,7 +20,7 @@ router.post('/register', usercontroller.registerUser);
 router.get('/home',isUserLoggedIn, usercontroller.fetchHome)
 
 
-// Private routes (only accessible when logged in)
+// Private routes //access only login
 router.post('/logout', isUserLoggedIn, usercontroller.signout);
 
 

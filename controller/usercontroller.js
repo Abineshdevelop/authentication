@@ -1,12 +1,12 @@
 const userSchema = require('../model/usermodel');
 const bcrypt = require("bcryptjs");
 
-// Load Register Page
+// load reg page
 const loadRegister = (req, res) => {
     res.render('user/register');
 };
 
-// Register User
+// Reg user
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -27,12 +27,12 @@ const registerUser = async (req, res) => {
     }
 };
 
-// Load Login Page
+// load the login page
 const loadLogin = (req, res) => {
     res.render('user/login');
 };
 
-// Login User
+// login user
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -48,7 +48,7 @@ const login = async (req, res) => {
             return res.render('user/login', { message: 'Incorrect password' });
         }
 
-        // Set session with user's name and email
+        //session seting
         req.session.user = { name: user.name, email: user.email };
 
         res.redirect('/user/home');
@@ -58,13 +58,13 @@ const login = async (req, res) => {
     }
 };
 
-// Home Page (after login)
+// home page show name after login
 const fetchHome = (req, res) => {
     const userName = req.session.user?.name || 'User';
     res.render('user/home', { userName });
 };
 
-// Logout
+// logout
 const signout = (req, res) => {
     try {
         delete req.session.user;
