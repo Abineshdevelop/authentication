@@ -88,10 +88,8 @@
     .form-control::placeholder {
       color: #bbb !important;
       opacity: 1;
-      /* For Firefox */
     }
 
-    /* Cross-browser placeholder support */
     .form-control::-webkit-input-placeholder {
       color: #bbb !important;
     }
@@ -112,7 +110,6 @@
 
 <body>
 
-<!-- Inside the login-card form -->
 <form class="login-card" method="POST" action="/admin/login">
   <h3 class="text-center mb-3" style="color: #00bcd4;">Admin Login</h3>
   <p class="text-center mb-4" style="color: #bbbbbb;">Enter your credentials to access the admin panel</p>
@@ -121,19 +118,16 @@
   <div class="error-message">{{message}}</div>
   {{/if}}
 
-  <!-- ✅ New Admin Name Field -->
   <div class="mb-3">
     <label for="name" class="form-label">Admin Name</label>
     <input type="text" name="name" class="form-control" id="name" placeholder="John Doe" />
   </div>
 
-  <!-- Existing Email Field -->
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input type="email" name="email" class="form-control" id="email" placeholder="admin@example.com" />
   </div>
 
-  <!-- Existing Password Field -->
   <div class="mb-4">
     <label for="password" class="form-label">Password</label>
     <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" />
