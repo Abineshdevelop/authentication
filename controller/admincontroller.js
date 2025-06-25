@@ -2,8 +2,6 @@ const adminModel = require('../model/adminmodel')
 const usermodel = require('../model/usermodel')
 const bcrypt = require("bcryptjs")
 const { search } = require('../routes/user')
-//const createUser = require('../models/userSchema');
-// const isMatch = await bcrypt.compare(password, admin.password);
 
 console.log("admin model", adminModel)
 const loadLogin = async (req, res) => {
@@ -53,15 +51,7 @@ const loadDashboard = async (req, res) => {
 };
 
 
-//load form
-const loadEditUser = async (req, res) => {
-    try {
-        const user = await usermodel.findById(req.params.id);
-        res.render('admin/editUser', { user });
-    } catch (error) {
-        res.send(error.message);
-    }
-};
+
 const updateUser = async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -138,6 +128,6 @@ const adminsignout = (req, res) => {
 
 
 
-module.exports = { loadLogin, loginin, loadDashboard, loadEditUser, updateUser, deleteUser, createUser, searchUser,adminsignout}
+module.exports = { loadLogin, loginin, loadDashboard, updateUser, deleteUser, createUser, searchUser,adminsignout}
 
 

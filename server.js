@@ -7,6 +7,7 @@ const adminRoutes=require('./routes/admin')
 const connectDB = require('./db/connectDB');
 const session = require('express-session');
 const noCache=require('nocache')
+const hbs = require('hbs');
 
 connectDB();
 
@@ -21,7 +22,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60, 
+    maxAge: 1000 * 60 * 60, //1 hour exp aft
     httpOnly: true
   }
 }));
@@ -37,6 +38,13 @@ app.use('/user',userRoutes)
 app.use('/admin',adminRoutes)
 
 
+hbs.registerHelper('inc', function (value) {
+  return parseInt(value) + 1;
+});
+
+
 app.listen(PORT,()=>{
     console.log("server is running in port",`${PORT}`)
 })
+
+

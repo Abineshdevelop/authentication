@@ -4,23 +4,21 @@ const router = express.Router();
 const usercontroller = require('../controller/usercontroller');
 const { isUserLoggedIn, publicUserMiddleware } = require('../middlewares/userMiddleware');
 
+//login 
+router.post('/login',usercontroller.login)//check password and email
+router.get('/login',publicUserMiddleware, usercontroller.loadLogin);  
+//session is not there
+//show login page
 
-//login
-router.get('/login',publicUserMiddleware, usercontroller.loadLogin);
 
+//for displayiung user name
+router.get('/home',isUserLoggedIn, usercontroller.fetchHome)
 
 //register
+router.post('/register', usercontroller.registerUser);
 router.get('/register',publicUserMiddleware, usercontroller.loadRegister);
 
 
-//user login
-router.post('/login',usercontroller.login)
-//registration
-router.post('/register', usercontroller.registerUser);
-router.get('/home',isUserLoggedIn, usercontroller.fetchHome)
-
-
-// Private routes //access only login
 router.post('/logout', isUserLoggedIn, usercontroller.signout);
 
 

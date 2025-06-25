@@ -71,7 +71,7 @@
 <body>
   <!-- bavbar -->
   <nav class="navbar navbar-expand-lg px-4 py-2">
-    <a class="navbar-brand">{{adminName}}</a>
+    <a class="navbar-brand">Welcome‎‎ ‎ ‎ ‎  {{adminName}}</a>
     <div class="ms-auto">
       <form action="/admin/logout" method="POST">
         <button type="submit" class="btn btn-logout">Logout</button>
@@ -86,9 +86,9 @@
 
       <!-- search and create -->
       <div class="d-flex justify-content-between mb-4 flex-wrap gap-2">
-<form action="/admin/search" method="GET" class="search-bar w-100 w-md-auto">
-  <input type="text" name="q" class="form-control" placeholder="Search by name or email" />
-</form>
+        <form action="/admin/search" method="GET" class="search-bar w-100 w-md-auto">
+          <input type="text" name="q" class="form-control" placeholder="Search by name or email" />
+        </form>
 
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
           <i class="bi bi-person-plus-fill"></i> Create User
@@ -110,7 +110,7 @@
           <tbody>
             {{#each users}}
             <tr>
-              <td>{{@index}}</td>
+              <td>{{inc @index}}</td>
               <td>{{this.name}}</td>
               <td>{{this.email}}</td>
               <td>{{this.createdAt}}</td>
@@ -120,8 +120,8 @@
                   Edit
                 </button>
                 <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{this._id}}')">
-  Delete
-</button>
+                  Delete
+                </button>
 
               </td>
             </tr>
@@ -193,134 +193,134 @@
     </div>
   </div>
 
- <script>
-  const createForm = document.getElementById('createForm');
+  <script>
+    const createForm = document.getElementById('createForm');
 
-  createForm.addEventListener('submit', async function (e) {
-    console.log("creater form")
-    e.preventDefault();
+    createForm.addEventListener('submit', async function (e) {
+      console.log("creater form")
+      e.preventDefault();
 
-    const name = document.getElementById('newUserName').value.trim();
-    const email = document.getElementById('newUserEmail').value.trim();
-    const password = document.getElementById('newUserPassword').value.trim();
-console.log("pafjoesuafn")
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&]).{8,}$/;
+      const name = document.getElementById('newUserName').value.trim();
+      const email = document.getElementById('newUserEmail').value.trim();
+      const password = document.getElementById('newUserPassword').value.trim();
+      console.log("pafjoesuafn")
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&]).{8,}$/;
 
-    if (!name || !email || !emailRegex.test(email) || !passwordRegex.test(password)) {
-      Swal.fire({
-        icon: "error",
-        title: "Validation Error",
-        text: "Fill in valid name, email, and strong password.",
-        background: '#1a1a1a',
-        color: '#f1f1f1',
-        iconColor: '#00bcd4',
-        confirmButtonColor: '#00bcd4'
-      });
-      return;
-    }
+      if (!name || !email || !emailRegex.test(email) || !passwordRegex.test(password)) {
+        Swal.fire({
+          icon: "error",
+          title: "Validation Error",
+          text: "Fill in valid name, email, and strong password.",
+          background: '#1a1a1a',
+          color: '#f1f1f1',
+          iconColor: '#00bcd4',
+          confirmButtonColor: '#00bcd4'
+        });
+        return;
+      }
 
-    createForm.submit()
+      createForm.submit()
 
-  });
-</script>
-
-<script>
-    const message='{{message}}'
-    if(message && message.length > 0){
- Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: message,
-      timer: 2000,
-      showConfirmButton: false,
-      background: '#1f1f1f',
-      color: '#f1f1f1',
-      iconColor: '#00bcd4'
     });
-    }
-   
-</script>
-<script>
-  const editModal = document.getElementById('editModal');
-  editModal.addEventListener('show.bs.modal', function (event) {
-    const button = event.relatedTarget;
-    const id = button.getAttribute('data-id');
-    const name = button.getAttribute('data-name');
-    const email = button.getAttribute('data-email');
+  </script>
 
-    const form = document.getElementById('editForm');
-    form.action = `/admin/edit-user/${id}`;
-    document.getElementById('userId').value = id;
-    document.getElementById('userName').value = name;
-    document.getElementById('userEmail').value = email;
-  });
-</script>
-<script>
-  const editForm = document.getElementById('editForm');
-  editForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const userName = document.getElementById('userName').value.trim();
-    const userEmail = document.getElementById('userEmail').value.trim();
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!userName || !emailRegex.test(userEmail)) {
+  <script>
+    const message = '{{message}}'
+    if (message && message.length > 0) {
       Swal.fire({
-        icon: 'error',
-        title: 'Validation Error',
-        text: 'Please enter a valid name and email address.',
-        background: '#1a1a1a',
+        icon: 'success',
+        title: 'Success',
+        text: message,
+        timer: 2000,
+        showConfirmButton: false,
+        background: '#1f1f1f',
         color: '#f1f1f1',
-        iconColor: '#00bcd4',
-        confirmButtonColor: '#00bcd4',
-        confirmButtonText: 'Okay',
-        customClass: {
-          popup: 'rounded-4 shadow-lg',
-          title: 'fw-bold',
-          confirmButton: 'px-4 py-2'
+        iconColor: '#00bcd4'
+      });
+    }
+
+  </script>
+  <script>
+    const editModal = document.getElementById('editModal');
+    editModal.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+      const id = button.getAttribute('data-id');
+      const name = button.getAttribute('data-name');
+      const email = button.getAttribute('data-email');
+
+      const form = document.getElementById('editForm');
+      form.action = `/admin/edit-user/${id}`;
+      document.getElementById('userId').value = id;
+      document.getElementById('userName').value = name;
+      document.getElementById('userEmail').value = email;
+    });
+  </script>
+  <script>
+    const editForm = document.getElementById('editForm');
+    editForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const userName = document.getElementById('userName').value.trim();
+      const userEmail = document.getElementById('userEmail').value.trim();
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!userName || !emailRegex.test(userEmail)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Validation Error',
+          text: 'Please enter a valid name and email address.',
+          background: '#1a1a1a',
+          color: '#f1f1f1',
+          iconColor: '#00bcd4',
+          confirmButtonColor: '#00bcd4',
+          confirmButtonText: 'Okay',
+          customClass: {
+            popup: 'rounded-4 shadow-lg',
+            title: 'fw-bold',
+            confirmButton: 'px-4 py-2'
+          }
+        });
+        return false;
+      }
+
+      this.submit();
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function confirmDelete(userId) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#6c757d",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = `/admin/delete-user/${userId}?deleted=true`;
         }
       });
-      return false;
     }
 
-    this.submit();
-  });
-</script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('deleted') === 'true') {
+      Swal.fire({
+        icon: "success",
+        title: "Deleted!",
+        text: "User has been deleted successfully.",
+        showConfirmButton: false,
+        timer: 2000
+      });
 
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  function confirmDelete(userId) {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#6c757d",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = `/admin/delete-user/${userId}?deleted=true`;
-      }
-    });
-  }
-
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('deleted') === 'true') {
-    Swal.fire({
-      icon: "success",
-      title: "Deleted!",
-      text: "User has been deleted successfully.",
-      showConfirmButton: false,
-      timer: 2000
-    });
-
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
-</script>
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
